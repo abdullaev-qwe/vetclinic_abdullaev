@@ -1,0 +1,13 @@
+# Запрещаем выполнение PHP в этой папке
+# (защита от загрузки злонамеренных скриптов)
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|cgi)$">
+    Require all denied
+</FilesMatch>
+
+# Разрешаем только картинки
+<FilesMatch "\.(jpg|jpeg|png|webp|gif)$">
+    Require all granted
+</FilesMatch>
+
+# Запрещаем листинг директории
+Options -Indexes

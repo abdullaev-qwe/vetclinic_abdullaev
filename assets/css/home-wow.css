@@ -1,0 +1,872 @@
+/* =====================================================
+   home-wow.css — Этапы 1+2: «вау»-главная
+   Подключается ТОЛЬКО на index.php.
+   Палитра ВетЗабота сохранена: изумруд, золото, кремовый.
+   ===================================================== */
+
+/* ── Переменные этой страницы (не глобальные) ──────────── */
+.wow-home {
+  --emerald-deep: #0a3d2e;
+  --emerald:      #0d4f3c;
+  --emerald-glow: #166a52;
+  --gold:         #c9a84c;
+  --gold-glow:    #e6c46b;
+  --cream:        #faf8f4;
+  --ink:          #0f1f1a;
+  --ink-soft:     #5a7068;
+
+  --ease-out:  cubic-bezier(.22,.61,.36,1);
+  --ease-pop:  cubic-bezier(.34,1.56,.64,1);
+}
+
+/* На мобилках выключаем тяжёлые эффекты */
+@media (prefers-reduced-motion: reduce) {
+  .wow-home *,
+  .wow-home *::before,
+  .wow-home *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =====================================================
+   1. HERO 2.0 — асимметричный, mesh-градиент, видео
+   ===================================================== */
+
+.wow-hero {
+  position: relative;
+  min-height: clamp(620px, 92vh, 880px);
+  padding: 110px 0 80px;
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--emerald-deep);
+}
+
+/* ── Mesh-градиент: 3 цветных пятна, медленно дышат ── */
+.wow-hero__mesh {
+  position: absolute;
+  inset: -20%;
+  z-index: -3;
+  filter: blur(70px) saturate(1.2);
+  opacity: .85;
+}
+.wow-hero__mesh::before,
+.wow-hero__mesh::after,
+.wow-hero__mesh > span {
+  content: '';
+  position: absolute;
+  width: 50%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  will-change: transform;
+}
+.wow-hero__mesh::before {
+  top: -10%; left: -5%;
+  background: radial-gradient(circle at 50% 50%, var(--emerald-glow) 0%, transparent 60%);
+  animation: meshFloat1 18s var(--ease-out) infinite alternate;
+}
+.wow-hero__mesh::after {
+  bottom: -15%; right: -10%;
+  background: radial-gradient(circle at 50% 50%, var(--gold) 0%, transparent 55%);
+  opacity: .55;
+  animation: meshFloat2 22s var(--ease-out) infinite alternate;
+}
+.wow-hero__mesh > span {
+  top: 30%; right: 25%;
+  background: radial-gradient(circle at 50% 50%, #2bb38a 0%, transparent 60%);
+  opacity: .55;
+  animation: meshFloat3 26s var(--ease-out) infinite alternate;
+}
+@keyframes meshFloat1 {
+  to { transform: translate3d(15%, 10%, 0) scale(1.15); }
+}
+@keyframes meshFloat2 {
+  to { transform: translate3d(-12%, -8%, 0) scale(1.08); }
+}
+@keyframes meshFloat3 {
+  to { transform: translate3d(-20%, 15%, 0) scale(1.2); }
+}
+
+/* ── Видео-петля под mesh (опционально) ── */
+.wow-hero__video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .25;
+  mix-blend-mode: luminosity;
+  pointer-events: none;
+}
+
+/* ── Тёмный «винетировочный» слой поверх видео/mesh ── */
+.wow-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 70% 20%, transparent 0%, rgba(10,30,22,.55) 70%),
+    linear-gradient(180deg, rgba(10,61,46,.15) 0%, rgba(10,30,22,.65) 100%);
+}
+
+/* ── Контент hero: асимметричная сетка ── */
+.wow-hero__inner {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.wow-hero__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(12px);
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 28px;
+}
+.wow-hero__label::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74,222,128,.7);
+  animation: pulseDot 2s ease-out infinite;
+}
+@keyframes pulseDot {
+  70%  { box-shadow: 0 0 0 12px rgba(74,222,128,0); }
+  100% { box-shadow: 0 0 0 0   rgba(74,222,128,0); }
+}
+
+.wow-hero__title {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 28px;
+  text-wrap: balance;
+}
+.wow-hero__title em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-glow) 50%, var(--gold) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shineText 4s linear infinite;
+}
+@keyframes shineText {
+  to { background-position: -200% 0; }
+}
+.wow-hero__title .accent {
+  position: relative;
+  display: inline-block;
+}
+.wow-hero__title .accent::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  bottom: -4px;
+  width: 104%;
+  height: 14px;
+  background: var(--gold);
+  opacity: .35;
+  border-radius: 4px;
+  z-index: -1;
+  transform-origin: left;
+  animation: drawUnderline 1.3s var(--ease-out) .5s both;
+}
+@keyframes drawUnderline {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.wow-hero__lead {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(255,255,255,.78);
+  max-width: 540px;
+  margin: 0 0 36px;
+}
+
+.wow-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 56px;
+}
+
+/* Magnetic-кнопка (золотая) */
+.wow-btn-magnet {
+  --tx: 0px;
+  --ty: 0px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 30px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-glow) 100%);
+  color: #2a1f00;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transform: translate3d(var(--tx), var(--ty), 0);
+  transition: transform .35s var(--ease-pop), box-shadow .35s ease;
+  box-shadow:
+    0 8px 24px rgba(201,168,76,.35),
+    inset 0 -2px 0 rgba(0,0,0,.08);
+  overflow: hidden;
+}
+.wow-btn-magnet::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%),
+              rgba(255,255,255,.45) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.wow-btn-magnet:hover { box-shadow: 0 14px 36px rgba(201,168,76,.5); }
+.wow-btn-magnet:hover::before { opacity: 1; }
+.wow-btn-magnet svg { transition: transform .3s var(--ease-pop); }
+.wow-btn-magnet:hover svg { transform: translateX(3px); }
+
+/* Контурная второстепенная */
+.wow-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 26px;
+  border: 1.5px solid rgba(255,255,255,.35);
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(10px);
+  transition: all .25s var(--ease-out);
+}
+.wow-btn-ghost:hover {
+  background: rgba(255,255,255,.14);
+  border-color: rgba(255,255,255,.6);
+  transform: translateY(-2px);
+}
+
+/* ── Cтатистика с count-up ── */
+.wow-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,.18);
+}
+.wow-stat {
+  position: relative;
+}
+.wow-stat strong {
+  display: block;
+  font-family: var(--font-display, serif);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, var(--gold-glow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.wow-stat span {
+  display: block;
+  font-size: .82rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.65);
+}
+
+/* ── Правая часть: фото-композиция с парящими карточками ── */
+.wow-hero__art {
+  position: relative;
+  height: 540px;
+}
+.wow-hero__photo {
+  position: absolute;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  transition: transform .8s var(--ease-out);
+}
+.wow-hero__photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 8s ease-out;
+}
+.wow-hero__photo:hover img { transform: scale(1.08); }
+
+.wow-hero__photo--main {
+  top: 0; right: 0;
+  width: 75%; height: 78%;
+  animation: floatY 7s ease-in-out infinite;
+}
+.wow-hero__photo--mini1 {
+  bottom: 4%; left: 0;
+  width: 56%; height: 38%;
+  z-index: 2;
+  animation: floatY 9s ease-in-out infinite reverse;
+}
+.wow-hero__photo--mini2 {
+  top: 8%; left: 6%;
+  width: 38%; height: 28%;
+  z-index: 1;
+  border: 4px solid rgba(255,255,255,.9);
+  animation: floatY 11s ease-in-out infinite;
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+/* Бейджи поверх фото */
+.wow-hero__badge {
+  position: absolute;
+  z-index: 4;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.18);
+  color: var(--ink);
+  font-size: .85rem;
+  animation: floatBadge 6s ease-in-out infinite;
+}
+.wow-hero__badge--tl {
+  top: 5%; left: -8%;
+  animation-delay: .5s;
+}
+.wow-hero__badge--br {
+  bottom: 0%; right: -4%;
+  animation-delay: 1.2s;
+}
+.wow-hero__badge strong { display:block; font-weight:700; }
+.wow-hero__badge span   { color: var(--ink-soft); font-size:.78rem; }
+.wow-hero__badge-icn {
+  width: 38px; height: 38px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  background: var(--cream);
+  flex-shrink: 0;
+}
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-8px) rotate(1deg); }
+}
+
+/* Декоративные SVG «лапки» в hero */
+.wow-hero__paws {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .08;
+}
+.wow-hero__paws svg {
+  position: absolute;
+  fill: #fff;
+  animation: pawWalk 14s linear infinite;
+}
+.wow-hero__paws svg:nth-child(1) { top: 12%; left: 4%;  width: 38px; animation-delay: 0s; }
+.wow-hero__paws svg:nth-child(2) { top: 28%; left: 22%; width: 28px; animation-delay: 1.5s; }
+.wow-hero__paws svg:nth-child(3) { top: 52%; left: 38%; width: 44px; animation-delay: 3s; }
+.wow-hero__paws svg:nth-child(4) { top: 70%; left: 58%; width: 32px; animation-delay: 4.5s; }
+.wow-hero__paws svg:nth-child(5) { top: 18%; right: 8%; width: 36px; animation-delay: 6s; }
+@keyframes pawWalk {
+  0%   { opacity: 0; transform: translateY(20px) rotate(-15deg) scale(.8); }
+  20%  { opacity: 1; transform: translateY(0)    rotate(0deg)   scale(1);  }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-30px) rotate(15deg) scale(1.05); }
+}
+
+/* =====================================================
+   2. MARQUEE доверия под hero
+   ===================================================== */
+.wow-marquee {
+  background: var(--emerald-deep);
+  padding: 22px 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  position: relative;
+}
+.wow-marquee::before,
+.wow-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.wow-marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--emerald-deep) 0%, transparent 100%);
+}
+.wow-marquee::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--emerald-deep) 0%, transparent 100%);
+}
+.wow-marquee__track {
+  display: flex;
+  gap: 60px;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.wow-marquee:hover .wow-marquee__track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.wow-marquee__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,.68);
+  font-weight: 500;
+  font-size: .95rem;
+  white-space: nowrap;
+}
+.wow-marquee__item svg {
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+/* =====================================================
+   3. Анимации появления (IntersectionObserver)
+   ===================================================== */
+.wow-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s var(--ease-out), transform .9s var(--ease-out);
+}
+.wow-reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.wow-reveal[data-delay="1"] { transition-delay: .1s; }
+.wow-reveal[data-delay="2"] { transition-delay: .2s; }
+.wow-reveal[data-delay="3"] { transition-delay: .3s; }
+.wow-reveal[data-delay="4"] { transition-delay: .4s; }
+.wow-reveal[data-delay="5"] { transition-delay: .5s; }
+
+/* =====================================================
+   4. Адаптив
+   ===================================================== */
+@media (max-width: 1100px) {
+  .wow-hero__inner { grid-template-columns: 1fr; gap: 50px; }
+  .wow-hero__art   { height: 460px; max-width: 560px; }
+  .wow-hero__stats { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+}
+@media (max-width: 760px) {
+  .wow-hero { padding: 90px 0 60px; min-height: auto; }
+  .wow-hero__art   { height: 360px; }
+  .wow-hero__photo--main  { width: 78%; height: 72%; }
+  .wow-hero__photo--mini1 { width: 56%; height: 36%; }
+  .wow-hero__photo--mini2 { width: 40%; height: 26%; }
+  .wow-hero__stats { grid-template-columns: repeat(2, 1fr); gap: 18px; padding-top: 28px; }
+  .wow-hero__badge--tl { left: -2%;  padding: 10px 12px; }
+  .wow-hero__badge--br { right: -2%; padding: 10px 12px; }
+  .wow-hero__paws { display: none; } /* мобилка — снимаем декор */
+  .wow-hero__video { display: none; } /* экономим трафик */
+  .wow-marquee__track { gap: 36px; animation-duration: 22s; }
+}
+@media (max-width: 480px) {
+  .wow-hero__cta { flex-direction: column; align-items: stretch; }
+  .wow-btn-magnet, .wow-btn-ghost { justify-content: center; }
+}
+
+/* =====================================================
+   5. Тёмная тема (если включена) — hero уже тёмный,
+   но карточки-бейджи нужно адаптировать
+   ===================================================== */
+[data-theme="dark"] .wow-hero__badge {
+  background: rgba(30,40,38,.96);
+  color: #e8f0ec;
+}
+[data-theme="dark"] .wow-hero__badge span {
+  color: rgba(232,240,236,.7);
+}
+[data-theme="dark"] .wow-hero__badge-icn {
+  background: rgba(255,255,255,.08);
+}
+
+/* =========================================================
+   ════════════════════ ЭТАП 2 ════════════════════
+   Bento-преимущества + bento-услуги + sticky story
+   ========================================================= */
+
+/* ── Общая обёртка под body Этапа 2 ── */
+.wow-section {
+  padding: clamp(70px, 9vw, 130px) 0;
+  position: relative;
+}
+.wow-section--cream {
+  background: var(--cream);
+}
+.wow-section__head {
+  text-align: center;
+  margin-bottom: clamp(40px, 5vw, 70px);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.wow-section__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201,168,76,.12);
+  border: 1px solid rgba(201,168,76,.3);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+.wow-section__title {
+  font-family: var(--font-display, serif);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+.wow-section__title em {
+  font-style: italic;
+  color: var(--gold);
+  position: relative;
+}
+.wow-section__title em::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 8px;
+  background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+  opacity: .25;
+  border-radius: 4px;
+}
+.wow-section__sub {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+[data-theme="dark"] .wow-section__title { color: #e8f0ec; }
+[data-theme="dark"] .wow-section__sub   { color: rgba(232,240,236,.78); }
+[data-theme="dark"] .wow-section--cream { background: #0e1815; }
+
+/* =========================================================
+   3. BENTO-СЕТКА «ПРЕИМУЩЕСТВА»
+   ========================================================= */
+.wow-bento {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(160px, auto);
+  gap: 18px;
+}
+.wow-bento__cell {
+  position: relative;
+  border-radius: 24px;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid var(--border, #d8e6e0);
+  overflow: hidden;
+  transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), border-color .25s;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  isolation: isolate;
+}
+.wow-bento__cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%),
+              rgba(13,79,60,.08) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.wow-bento__cell:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(13,79,60,.12);
+  border-color: rgba(13,79,60,.3);
+}
+.wow-bento__cell:hover::before { opacity: 1; }
+
+[data-theme="dark"] .wow-bento__cell {
+  background: #1e2826;
+  border-color: #2d3d37;
+}
+[data-theme="dark"] .wow-bento__cell:hover {
+  border-color: rgba(226,201,126,.4);
+  box-shadow: 0 20px 40px rgba(0,0,0,.3);
+}
+
+/* Размещение плиток — асимметричный bento */
+.wow-bento__cell--big       { grid-column: span 3; grid-row: span 2; }
+.wow-bento__cell--tall      { grid-column: span 2; grid-row: span 2; }
+.wow-bento__cell--wide      { grid-column: span 4; grid-row: span 1; }
+.wow-bento__cell--regular   { grid-column: span 2; grid-row: span 1; }
+.wow-bento__cell--small     { grid-column: span 2; grid-row: span 1; }
+
+/* Спец-вариант: тёмный с золотым акцентом */
+.wow-bento__cell--accent {
+  background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-glow) 100%);
+  color: #fff;
+  border-color: transparent;
+}
+.wow-bento__cell--accent .wow-bento__icon { color: var(--gold); }
+.wow-bento__cell--accent h3,
+.wow-bento__cell--accent p { color: #fff; }
+.wow-bento__cell--accent::before {
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%),
+              rgba(201,168,76,.18) 0%, transparent 55%);
+}
+
+.wow-bento__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--cream);
+  display: grid;
+  place-items: center;
+  color: var(--emerald);
+  flex-shrink: 0;
+  transition: transform .35s var(--ease-pop);
+}
+.wow-bento__cell:hover .wow-bento__icon { transform: scale(1.1) rotate(-5deg); }
+
+[data-theme="dark"] .wow-bento__icon {
+  background: rgba(255,255,255,.06);
+  color: var(--gold);
+}
+
+.wow-bento__cell h3 {
+  font-family: var(--font-display, serif);
+  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+  font-weight: 700;
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.wow-bento__cell--big h3 { font-size: clamp(1.4rem, 2vw, 1.85rem); }
+.wow-bento__cell p {
+  font-size: .94rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 0;
+}
+[data-theme="dark"] .wow-bento__cell h3 { color: #e8f0ec; }
+[data-theme="dark"] .wow-bento__cell p  { color: rgba(232,240,236,.78); }
+
+/* Большая «звёздная» цифра в углу плитки */
+.wow-bento__big-num {
+  font-family: var(--font-display, serif);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-glow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: auto;
+}
+
+/* =========================================================
+   4. STICKY STORY «Как мы заботимся»
+   3 шага: Запись → Приём → Восстановление
+   ========================================================= */
+.wow-story {
+  padding: clamp(60px, 8vw, 110px) 0;
+  background: var(--emerald-deep);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.wow-story::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 80% 30%, rgba(201,168,76,.18) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(46,204,113,.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.wow-story__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.wow-story__sticky {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+.wow-story__visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+.wow-story__visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity .9s var(--ease-out), transform 1.5s var(--ease-out);
+}
+.wow-story__visual img.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+.wow-story__visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(10,30,22,.6) 100%);
+  z-index: 1;
+}
+.wow-story__counter {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 2;
+  font-family: var(--font-display, serif);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-glow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -.04em;
+}
+
+.wow-story__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.wow-story__step {
+  padding: 36px 32px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  transition: background .45s var(--ease-out), border-color .45s var(--ease-out), transform .45s var(--ease-out);
+  cursor: pointer;
+}
+.wow-story__step:hover,
+.wow-story__step.is-active {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(201,168,76,.4);
+  transform: translateX(8px);
+}
+.wow-story__step-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.wow-story__step-num::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+  display: block;
+  transition: width .35s var(--ease-out);
+}
+.wow-story__step.is-active .wow-story__step-num::before { width: 60px; }
+
+.wow-story__step h3 {
+  font-family: var(--font-display, serif);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  margin: 0 0 12px;
+  color: #fff;
+}
+.wow-story__step p {
+  color: rgba(255,255,255,.7);
+  line-height: 1.65;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* =========================================================
+   5. Адаптив Этапа 2
+   ========================================================= */
+@media (max-width: 1100px) {
+  .wow-bento { grid-template-columns: repeat(4, 1fr); }
+  .wow-bento__cell--big      { grid-column: span 4; grid-row: span 1; }
+  .wow-bento__cell--tall     { grid-column: span 2; grid-row: span 2; }
+  .wow-bento__cell--wide     { grid-column: span 4; }
+  .wow-bento__cell--regular  { grid-column: span 2; }
+  .wow-bento__cell--small    { grid-column: span 2; }
+
+  .wow-story__inner { grid-template-columns: 1fr; gap: 50px; }
+  .wow-story__sticky { position: static; }
+  .wow-story__visual { max-width: 540px; margin: 0 auto; }
+}
+@media (max-width: 700px) {
+  .wow-bento { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .wow-bento__cell {
+    grid-column: span 2 !important;
+    grid-row: auto !important;
+    padding: 22px;
+  }
+  .wow-bento__icon { width: 46px; height: 46px; border-radius: 12px; }
+  .wow-bento__big-num { font-size: 2.6rem; }
+
+  .wow-story { padding: 50px 0; }
+  .wow-story__step { padding: 24px 20px; }
+}
+

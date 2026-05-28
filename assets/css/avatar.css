@@ -1,0 +1,141 @@
+/* =====================================================
+   avatar.css — стили для управления аватаром в профиле
+   ===================================================== */
+
+.avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  background: var(--white, #fff);
+  border: 1px solid var(--border, #d8e6e0);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.avatar-preview {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar-preview img,
+.avatar-preview > div {
+  width: 96px !important;
+  height: 96px !important;
+  border-radius: 50%;
+  border: 3px solid var(--gold, #c9a84c);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.avatar-preview > div {
+  font-size: 36px !important;
+}
+
+.avatar-info {
+  flex: 1;
+}
+
+.avatar-info h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  color: var(--ink, #0f1f1a);
+}
+
+.avatar-info p {
+  color: var(--ink-soft, #5a7068);
+  font-size: 0.85rem;
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+.avatar-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.avatar-upload-form,
+.avatar-delete-form {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Кастомная кнопка загрузки (вместо стандартного input file) */
+.avatar-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--emerald, #0d4f3c);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.15s;
+  border: none;
+}
+
+.avatar-upload-btn:hover {
+  background: var(--emerald-mid, #166a52);
+}
+
+.avatar-upload-btn input[type="file"] {
+  display: none;
+}
+
+.avatar-delete-btn {
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--ink-soft, #5a7068);
+  border: 1px solid var(--border, #d8e6e0);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.15s;
+}
+
+.avatar-delete-btn:hover {
+  background: #fee;
+  color: #c00;
+  border-color: #c00;
+}
+
+/* На мобильных — вертикальная компоновка */
+@media (max-width: 560px) {
+  .avatar-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  .avatar-actions {
+    justify-content: center;
+  }
+}
+
+/* Тёмная тема */
+[data-theme="dark"] .avatar-section {
+  background: var(--white, #1e2826) !important;
+  border-color: var(--border, #2d3d37) !important;
+}
+
+[data-theme="dark"] .avatar-info h3 {
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .avatar-info p {
+  color: var(--ink-soft) !important;
+}
+
+[data-theme="dark"] .avatar-delete-btn {
+  background: transparent;
+  color: var(--ink-mid);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .avatar-delete-btn:hover {
+  background: rgba(231, 76, 60, 0.15);
+  color: #ff9999;
+  border-color: #c00;
+}

@@ -1,0 +1,133 @@
+/* =====================================================
+   waiting-list.css — стили листа ожидания
+   ===================================================== */
+
+.waiting-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 18px;
+}
+
+.waiting-card {
+  background: var(--white, #fff);
+  border: 1px solid var(--border, #d8e6e0);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.15s;
+}
+
+.waiting-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.waiting-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.waiting-card-body h3 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  color: var(--ink, #0f1f1a);
+}
+
+.waiting-card-body dl {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 4px 10px;
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.waiting-card-body dt {
+  color: var(--ink-soft, #5a7068);
+  font-weight: 500;
+}
+
+.waiting-card-body dd {
+  margin: 0;
+  color: var(--ink, #0f1f1a);
+}
+
+.waiting-card-body dd em {
+  color: var(--ink-muted, #8fa89f);
+  font-style: italic;
+}
+
+.waiting-card-foot {
+  border-top: 1px solid var(--border, #d8e6e0);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+/* Кнопка-бейдж в шапке "лист ожидания" */
+.btn-waiting-list {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #fff8e1 0%, #fdf6e3 100%);
+  color: #8a6500;
+  border: 1px solid #e2c97e;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.btn-waiting-list:hover {
+  background: #fdf6e3;
+  border-color: #c9a84c;
+  color: #6b4d00;
+}
+
+/* Бейдж в админ-меню */
+.admin-menu-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: #c9a84c;
+  color: #0d4f3c;
+  border-radius: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+/* === Тёмная тема === */
+[data-theme="dark"] .waiting-card {
+  background: var(--white) !important;
+  border-color: var(--border) !important;
+}
+[data-theme="dark"] .waiting-card-body h3 {
+  color: var(--ink) !important;
+}
+[data-theme="dark"] .waiting-card-body dt {
+  color: var(--ink-soft) !important;
+}
+[data-theme="dark"] .waiting-card-body dd {
+  color: var(--ink) !important;
+}
+[data-theme="dark"] .btn-waiting-list {
+  background: rgba(201, 168, 76, 0.15);
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+@media (max-width: 560px) {
+  .waiting-card-body dl {
+    grid-template-columns: 1fr;
+  }
+  .waiting-card-body dt {
+    margin-top: 4px;
+  }
+}

@@ -1,0 +1,139 @@
+/* =====================================================
+   theme-pagehero-final.css — точечный фикс page-hero
+   Использует МАКСИМАЛЬНУЮ специфичность для перебития
+   любых исходных стилей с background-clip: text
+   ===================================================== */
+
+/* ── PAGE-HERO: фон ── */
+html[data-theme="dark"] body .page-hero,
+html[data-theme="dark"] .page-hero {
+  background: linear-gradient(135deg, #0a1612 0%, #1a3024 100%) !important;
+  padding: 80px 0 !important;
+}
+
+/* ── PAGE-HERO: H1 ── */
+/* Используем максимальную специфичность html[data-theme]+body+несколько уровней */
+html[data-theme="dark"] body .page-hero .container h1,
+html[data-theme="dark"] .page-hero .container h1,
+html[data-theme="dark"] .page-hero h1 {
+  color: #faf8f4 !important;
+  -webkit-text-fill-color: #faf8f4 !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* ── PAGE-HERO: параграф ── */
+html[data-theme="dark"] body .page-hero .container p,
+html[data-theme="dark"] .page-hero .container p,
+html[data-theme="dark"] .page-hero p {
+  color: rgba(250, 248, 244, 0.92) !important;
+  -webkit-text-fill-color: rgba(250, 248, 244, 0.92) !important;
+  opacity: 1 !important;
+}
+
+/* ── EM-акцент в page-hero h1 ── */
+html[data-theme="dark"] .page-hero h1 em,
+html[data-theme="dark"] .page-hero .container h1 em {
+  color: #c9a84c !important;
+  -webkit-text-fill-color: #c9a84c !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   То же самое для CTA-секции "Хотите познакомиться..."
+   ═══════════════════════════════════════════ */
+
+html[data-theme="dark"] body .cta-section .container h2,
+html[data-theme="dark"] .cta-section h2 {
+  color: #faf8f4 !important;
+  -webkit-text-fill-color: #faf8f4 !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  opacity: 1 !important;
+}
+
+html[data-theme="dark"] body .cta-section .container p,
+html[data-theme="dark"] .cta-section p {
+  color: rgba(250, 248, 244, 0.92) !important;
+  -webkit-text-fill-color: rgba(250, 248, 244, 0.92) !important;
+  opacity: 1 !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   То же для HERO h1 на главной
+   (на случай если предыдущий фикс не сработал)
+   ═══════════════════════════════════════════ */
+
+html[data-theme="dark"] body .hero .container h1,
+html[data-theme="dark"] .hero h1 {
+  color: #faf8f4 !important;
+  -webkit-text-fill-color: #faf8f4 !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  opacity: 1 !important;
+}
+
+html[data-theme="dark"] body .hero .container h1 em,
+html[data-theme="dark"] .hero h1 em {
+  color: #c9a84c !important;
+  -webkit-text-fill-color: #c9a84c !important;
+}
+
+html[data-theme="dark"] body .hero .container h1 span,
+html[data-theme="dark"] .hero h1 span {
+  color: #faf8f4 !important;
+  -webkit-text-fill-color: #faf8f4 !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   SECTION-TITLE (h2 с em внутри секций)
+   ═══════════════════════════════════════════ */
+
+html[data-theme="dark"] .section-title h2,
+html[data-theme="dark"] body .section-title h2 {
+  color: var(--ink) !important;
+  -webkit-text-fill-color: var(--ink) !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+}
+
+html[data-theme="dark"] .section-title h2 em,
+html[data-theme="dark"] body .section-title h2 em {
+  color: #c9a84c !important;
+  -webkit-text-fill-color: #c9a84c !important;
+  background: none !important;
+  background-image: none !important;
+}
+
+html[data-theme="dark"] .section-title .section-label {
+  color: #c9a84c !important;
+  -webkit-text-fill-color: #c9a84c !important;
+}
+
+html[data-theme="dark"] .section-title p {
+  color: var(--ink-mid) !important;
+  -webkit-text-fill-color: var(--ink-mid) !important;
+}

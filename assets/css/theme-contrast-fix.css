@@ -1,0 +1,445 @@
+/* =====================================================
+   theme-contrast-fix.css — Усиление контрастности тёмной темы
+   Подключить ПОСЛЕ theme.css
+   ===================================================== */
+
+/* ── HERO-секция ── */
+[data-theme="dark"] .hero h1,
+[data-theme="dark"] .hero-title,
+[data-theme="dark"] .hero-text h1,
+[data-theme="dark"] .hero-content h1 {
+  color: var(--cream) !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.5);
+}
+
+[data-theme="dark"] .hero p,
+[data-theme="dark"] .hero-text p,
+[data-theme="dark"] .hero-content p,
+[data-theme="dark"] .hero-subtitle,
+[data-theme="dark"] .hero-description {
+  color: rgba(232, 240, 236, 0.92) !important;
+}
+
+[data-theme="dark"] .hero-badge {
+  color: var(--gold) !important;
+  background: rgba(13, 79, 60, 0.4) !important;
+  border-color: var(--gold) !important;
+}
+
+[data-theme="dark"] .hero em,
+[data-theme="dark"] .hero-text em,
+[data-theme="dark"] .hero-accent {
+  color: var(--gold) !important;
+}
+
+/* ── Затемнение hero-фона для лучшей читаемости ── */
+[data-theme="dark"] .hero-bg::after,
+[data-theme="dark"] .hero-overlay {
+  background: linear-gradient(
+    105deg,
+    rgba(20, 27, 24, 0.95) 0%,
+    rgba(20, 27, 24, 0.80) 50%,
+    rgba(20, 27, 24, 0.55) 100%
+  ) !important;
+}
+
+/* ── PAGE-HERO (страницы внутри сайта) ── */
+[data-theme="dark"] .page-hero h1,
+[data-theme="dark"] .page-hero-title {
+  color: var(--cream) !important;
+}
+
+[data-theme="dark"] .page-hero p,
+[data-theme="dark"] .page-hero-subtitle {
+  color: rgba(232, 240, 236, 0.85) !important;
+}
+
+[data-theme="dark"] .breadcrumbs,
+[data-theme="dark"] .breadcrumbs a {
+  color: rgba(232, 240, 236, 0.85) !important;
+}
+
+[data-theme="dark"] .breadcrumbs a:hover {
+  color: var(--gold) !important;
+}
+
+/* ── ПОДВАЛ ── */
+[data-theme="dark"] .site-footer,
+[data-theme="dark"] footer.site-footer {
+  background: #0a1612 !important;
+  color: rgba(232, 240, 236, 0.85) !important;
+  border-top: 1px solid var(--border);
+}
+
+[data-theme="dark"] .site-footer h3,
+[data-theme="dark"] .site-footer h4,
+[data-theme="dark"] .footer-col h3,
+[data-theme="dark"] .footer-col h4,
+[data-theme="dark"] .footer-title {
+  color: var(--gold) !important;
+}
+
+[data-theme="dark"] .site-footer p,
+[data-theme="dark"] .site-footer li,
+[data-theme="dark"] .footer-description,
+[data-theme="dark"] .footer-col p,
+[data-theme="dark"] .footer-col li {
+  color: rgba(232, 240, 236, 0.85) !important;
+}
+
+[data-theme="dark"] .site-footer a,
+[data-theme="dark"] .footer-col a,
+[data-theme="dark"] .footer-nav a {
+  color: rgba(232, 240, 236, 0.75) !important;
+  transition: color .15s;
+}
+
+[data-theme="dark"] .site-footer a:hover,
+[data-theme="dark"] .footer-col a:hover,
+[data-theme="dark"] .footer-nav a:hover {
+  color: var(--gold) !important;
+}
+
+[data-theme="dark"] .footer-bottom,
+[data-theme="dark"] .footer-copy {
+  color: rgba(232, 240, 236, 0.55) !important;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+[data-theme="dark"] .footer-bottom a {
+  color: rgba(232, 240, 236, 0.7) !important;
+}
+
+[data-theme="dark"] .footer-logo,
+[data-theme="dark"] .site-footer .logo {
+  color: var(--gold) !important;
+}
+
+[data-theme="dark"] .footer-contact-icon {
+  color: var(--gold) !important;
+}
+
+/* ── ШАПКА (header) — текст и навигация ── */
+[data-theme="dark"] .site-header {
+  background: rgba(15, 29, 24, 0.97) !important;
+  border-bottom: 1px solid var(--border);
+}
+
+[data-theme="dark"] .site-nav a,
+[data-theme="dark"] .nav-link {
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .site-nav a:hover,
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .site-nav a.active {
+  color: var(--gold) !important;
+}
+
+[data-theme="dark"] .header-logo,
+[data-theme="dark"] .site-header .logo,
+[data-theme="dark"] .brand {
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .header-logo .logo-accent,
+[data-theme="dark"] .brand-accent,
+[data-theme="dark"] .brand em {
+  color: var(--gold) !important;
+}
+
+[data-theme="dark"] .user-menu-trigger,
+[data-theme="dark"] .user-name {
+  color: var(--ink) !important;
+}
+
+/* ── Кнопки в шапке ── */
+[data-theme="dark"] .btn-outline {
+  border-color: var(--gold) !important;
+  color: var(--gold) !important;
+  background: transparent !important;
+}
+
+[data-theme="dark"] .btn-outline:hover {
+  background: var(--gold) !important;
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .btn-gold {
+  background: var(--gold) !important;
+  color: #0f1f1a !important;
+}
+
+[data-theme="dark"] .btn-gold:hover {
+  background: var(--gold-light) !important;
+}
+
+/* ── СЕКЦИИ ── */
+[data-theme="dark"] section h2,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .section h2 {
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .section-subtitle,
+[data-theme="dark"] section p.lead,
+[data-theme="dark"] .section-lead {
+  color: var(--ink-mid) !important;
+}
+
+[data-theme="dark"] .section-tag,
+[data-theme="dark"] .section-eyebrow {
+  color: var(--gold) !important;
+}
+
+/* ── Карточки услуг и врачей ── */
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .doctor-card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .review-card,
+[data-theme="dark"] .price-card {
+  background: var(--white) !important;
+  border-color: var(--border) !important;
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .service-card h3,
+[data-theme="dark"] .doctor-card h3,
+[data-theme="dark"] .feature-card h3,
+[data-theme="dark"] .doctor-name,
+[data-theme="dark"] .service-name {
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .service-card p,
+[data-theme="dark"] .doctor-card p,
+[data-theme="dark"] .feature-card p,
+[data-theme="dark"] .review-card p,
+[data-theme="dark"] .doctor-specialty,
+[data-theme="dark"] .doctor-bio,
+[data-theme="dark"] .service-description {
+  color: var(--ink-mid) !important;
+}
+
+[data-theme="dark"] .service-icon,
+[data-theme="dark"] .feature-icon {
+  color: var(--gold) !important;
+}
+
+/* ── CTA-секция ── */
+[data-theme="dark"] .cta-section {
+  background: linear-gradient(135deg, #0a1612 0%, #0f1d18 100%) !important;
+}
+
+[data-theme="dark"] .cta-section h2,
+[data-theme="dark"] .cta-title {
+  color: var(--cream) !important;
+}
+
+[data-theme="dark"] .cta-section p,
+[data-theme="dark"] .cta-subtitle {
+  color: rgba(232, 240, 236, 0.85) !important;
+}
+
+/* ── Отзывы ── */
+[data-theme="dark"] .review-author,
+[data-theme="dark"] .review-name {
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .review-text {
+  color: var(--ink-mid) !important;
+}
+
+[data-theme="dark"] .review-stars {
+  color: var(--gold) !important;
+}
+
+[data-theme="dark"] .review-date {
+  color: var(--ink-soft) !important;
+}
+
+/* ── Профиль / личный кабинет ── */
+[data-theme="dark"] .profile-tabs,
+[data-theme="dark"] .tabs {
+  background: var(--white) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .profile-tab,
+[data-theme="dark"] .tab-link {
+  color: var(--ink-mid) !important;
+}
+
+[data-theme="dark"] .profile-tab.active,
+[data-theme="dark"] .tab-link.active {
+  color: var(--emerald) !important;
+  border-color: var(--emerald) !important;
+}
+
+[data-theme="dark"] .profile-info dt,
+[data-theme="dark"] .info-label {
+  color: var(--ink-soft) !important;
+}
+
+[data-theme="dark"] .profile-info dd,
+[data-theme="dark"] .info-value {
+  color: var(--ink) !important;
+}
+
+/* ── Формы ── */
+[data-theme="dark"] label,
+[data-theme="dark"] .form-label {
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .form-hint,
+[data-theme="dark"] .hint,
+[data-theme="dark"] small {
+  color: var(--ink-soft) !important;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background: #2a3530 !important;
+  color: var(--ink) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: var(--ink-soft) !important;
+  opacity: .7;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+  border-color: var(--emerald) !important;
+}
+
+/* ── Контактная страница ── */
+[data-theme="dark"] .contact-info,
+[data-theme="dark"] .contact-card {
+  background: var(--white) !important;
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .contact-info h3,
+[data-theme="dark"] .contact-card h3 {
+  color: var(--gold) !important;
+}
+
+[data-theme="dark"] .contact-info p,
+[data-theme="dark"] .contact-card p,
+[data-theme="dark"] .contact-detail {
+  color: var(--ink-mid) !important;
+}
+
+/* ── Цены ── */
+[data-theme="dark"] .price-card,
+[data-theme="dark"] .pricing-table {
+  background: var(--white) !important;
+}
+
+[data-theme="dark"] .price-card .price,
+[data-theme="dark"] .price-amount {
+  color: var(--gold) !important;
+}
+
+[data-theme="dark"] .calculator,
+[data-theme="dark"] .price-calculator {
+  background: var(--emerald-pale) !important;
+  color: var(--ink) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .calc-total,
+[data-theme="dark"] .total-price {
+  color: var(--gold) !important;
+}
+
+/* ── Расписание ── */
+[data-theme="dark"] .schedule-table,
+[data-theme="dark"] .schedule-card {
+  background: var(--white) !important;
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .schedule-table th {
+  background: var(--emerald-ghost) !important;
+  color: var(--gold) !important;
+}
+
+[data-theme="dark"] .day-off,
+[data-theme="dark"] .schedule-closed {
+  color: var(--ink-soft) !important;
+}
+
+/* ── Алерты ── */
+[data-theme="dark"] .alert-success {
+  background: rgba(46, 204, 113, 0.15) !important;
+  color: #7de89c !important;
+  border-color: rgba(46, 204, 113, 0.3) !important;
+}
+
+[data-theme="dark"] .alert-danger,
+[data-theme="dark"] .alert-error {
+  background: rgba(231, 76, 60, 0.15) !important;
+  color: #ff9999 !important;
+  border-color: rgba(231, 76, 60, 0.3) !important;
+}
+
+[data-theme="dark"] .alert-info {
+  background: rgba(52, 152, 219, 0.15) !important;
+  color: #90caf9 !important;
+  border-color: rgba(52, 152, 219, 0.3) !important;
+}
+
+[data-theme="dark"] .alert-warning {
+  background: rgba(201, 168, 76, 0.15) !important;
+  color: var(--gold) !important;
+  border-color: rgba(201, 168, 76, 0.3) !important;
+}
+
+/* ── Списки записей пользователя ── */
+[data-theme="dark"] .appointment-card {
+  background: var(--white) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .appointment-card h3,
+[data-theme="dark"] .appointment-card .title {
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .appointment-card .meta,
+[data-theme="dark"] .appointment-meta {
+  color: var(--ink-soft) !important;
+}
+
+/* ── Галерея ── */
+[data-theme="dark"] .gallery-item {
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .gallery-caption {
+  background: rgba(20, 27, 24, 0.85) !important;
+  color: var(--ink) !important;
+}
+
+/* ── Ссылки в общем тексте ── */
+[data-theme="dark"] a {
+  color: var(--gold);
+}
+
+[data-theme="dark"] a:hover {
+  color: var(--gold-light);
+}
+
+/* Сохраняем кнопки от перекраски в золото */
+[data-theme="dark"] .btn,
+[data-theme="dark"] button.btn {
+  /* Цвет управляется специфическими классами кнопок выше */
+}

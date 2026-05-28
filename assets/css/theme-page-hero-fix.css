@@ -1,0 +1,103 @@
+/* =====================================================
+   theme-page-hero-fix.css — фикс заголовков на внутренних страницах
+   Перебивает любые невидимые/прозрачные H1 на тёмных секциях
+   ===================================================== */
+
+/* ── ВСЕ возможные классы баннеров внутренних страниц ── */
+[data-theme="dark"] .page-hero,
+[data-theme="dark"] .page-banner,
+[data-theme="dark"] .breadcrumb-section,
+[data-theme="dark"] .page-header,
+[data-theme="dark"] .page-title-section,
+[data-theme="dark"] .inner-hero,
+[data-theme="dark"] .sub-hero,
+[data-theme="dark"] section.title-section {
+  background: linear-gradient(135deg, #0a1612 0%, #122520 100%) !important;
+}
+
+/* ── ЛЮБОЙ H1 в тёмной теме (на любой странице) ── */
+/* Используем мощный селектор с !important — перебьёт всё */
+[data-theme="dark"] h1 {
+  color: var(--cream) !important;
+  -webkit-text-fill-color: var(--cream) !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* H1 на белых секциях (например в .section белая) — тёмный текст */
+[data-theme="dark"] section[style*="background:var(--white)"] h1,
+[data-theme="dark"] section[style*="background: var(--white)"] h1,
+[data-theme="dark"] .section.bg-white h1,
+[data-theme="dark"] .white-section h1,
+[data-theme="dark"] main > section:not(.hero):not(.cta-section):not(.page-hero):not(.page-banner) h1 {
+  color: var(--ink) !important;
+  -webkit-text-fill-color: var(--ink) !important;
+  text-shadow: none;
+}
+
+/* ── ПАРАГРАФ под H1 на любой странице ── */
+[data-theme="dark"] .page-hero p,
+[data-theme="dark"] .page-banner p,
+[data-theme="dark"] .breadcrumb-section p,
+[data-theme="dark"] .page-header p,
+[data-theme="dark"] .page-title-section p,
+[data-theme="dark"] .inner-hero p,
+[data-theme="dark"] .sub-hero p,
+[data-theme="dark"] section.title-section p {
+  color: rgba(250, 248, 244, 0.92) !important;
+}
+
+/* ── EM-акцент в любых заголовках на тёмном ── */
+[data-theme="dark"] h1 em,
+[data-theme="dark"] .page-hero em,
+[data-theme="dark"] .page-banner em,
+[data-theme="dark"] .breadcrumb-section em {
+  color: var(--gold) !important;
+  -webkit-text-fill-color: var(--gold) !important;
+}
+
+/* ── BREADCRUMBS (хлебные крошки) ── */
+[data-theme="dark"] .breadcrumbs,
+[data-theme="dark"] .breadcrumb,
+[data-theme="dark"] nav.breadcrumbs {
+  color: rgba(250, 248, 244, 0.7) !important;
+}
+
+[data-theme="dark"] .breadcrumbs a,
+[data-theme="dark"] .breadcrumb a,
+[data-theme="dark"] nav.breadcrumbs a {
+  color: rgba(250, 248, 244, 0.85) !important;
+}
+
+[data-theme="dark"] .breadcrumbs a:hover,
+[data-theme="dark"] .breadcrumb a:hover {
+  color: var(--gold) !important;
+}
+
+[data-theme="dark"] .breadcrumbs span,
+[data-theme="dark"] .breadcrumb-separator {
+  color: rgba(250, 248, 244, 0.4) !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   УНИВЕРСАЛЬНЫЙ FALLBACK
+   Любой текст внутри прямого ребёнка <main>,
+   если фон контейнера тёмный — текст светлый
+   ═══════════════════════════════════════════ */
+
+[data-theme="dark"] main > section:first-child h1,
+[data-theme="dark"] main > div:first-child h1 {
+  color: var(--cream) !important;
+  -webkit-text-fill-color: var(--cream) !important;
+}
+
+/* ── Перебиваем background-clip:text везде в тёмной теме ── */
+[data-theme="dark"] *[class*="title"],
+[data-theme="dark"] *[class*="heading"] {
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+}

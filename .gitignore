@@ -1,0 +1,29 @@
+# Composer
+/vendor/
+
+# PHPUnit
+.phpunit.result.cache
+
+# Runtime cache
+/cache/*
+!/cache/.gitkeep
+
+# Logs
+/logs/*.log
+
+# User uploads
+/uploads/avatars/*
+!/uploads/avatars/.gitkeep
+/uploads/appointment_attachments/*
+!/uploads/appointment_attachments/.gitkeep
+
+# OS / editor
+Thumbs.db
+.DS_Store
+*.bak
+*.swp
+.idea/
+.vscode/
+
+# Misc
+ziP3IYmO

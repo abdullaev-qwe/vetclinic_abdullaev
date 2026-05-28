@@ -1,0 +1,12 @@
+{
+  "name": "vetclinic/app",
+  "description": "ВетЗабота — Ветеринарная клиника",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0"
+  }
+}

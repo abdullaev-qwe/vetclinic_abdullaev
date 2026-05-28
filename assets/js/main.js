@@ -1,0 +1,229 @@
+// assets/js/main.js — VetCare
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    // ── Бургер → мобильное меню ──────────────────────────
+    var burger    = document.getElementById('burgerBtn');
+    var mobileNav = document.getElementById('mobileNav');
+    if (burger && mobileNav) {
+        burger.addEventListener('click', function () {
+            mobileNav.classList.toggle('open');
+            burger.classList.toggle('open');
+            // Закрываем поиск если открыт
+            var ov = document.getElementById('searchOverlay');
+            if (ov) ov.classList.remove('open');
+        });
+        document.addEventListener('click', function (e) {
+            if (!burger.contains(e.target) && !mobileNav.contains(e.target)) {
+                mobileNav.classList.remove('open');
+                burger.classList.remove('open');
+            }
+        });
+    }
+
+    // ── Поиск ─────────────────────────────────────────────
+    var searchToggle = document.getElementById('searchToggle');
+    var searchOverlay= document.getElementById('searchOverlay');
+    var searchInput  = document.getElementById('siteSearch');
+    var searchResults= document.getElementById('searchResults');
+
+    if (searchToggle && searchOverlay) {
+        searchToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var isOpen = searchOverlay.classList.toggle('open');
+            // Закрываем мобильное меню
+            if (mobileNav) mobileNav.classList.remove('open');
+            if (burger)    burger.classList.remove('open');
+            if (isOpen && searchInput) {
+                searchInput.value = '';
+                searchInput.focus();
+                if (searchResults) searchResults.classList.remove('open');
+            }
+        });
+
+        // Закрываем оверлей при клике вне него
+        document.addEventListener('click', function (e) {
+            if (searchOverlay.classList.contains('open')) {
+                if (!searchOverlay.contains(e.target) && !searchToggle.contains(e.target)) {
+                    searchOverlay.classList.remove('open');
+                    if (searchResults) searchResults.classList.remove('open');
+                }
+            }
+        });
+
+        // ESC закрывает поиск
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                searchOverlay.classList.remove('open');
+                if (searchResults) searchResults.classList.remove('open');
+            }
+        });
+    }
+
+    // ── Живой поиск ──────────────────────────────────────
+    if (searchInput && searchResults) {
+        var timer = null;
+        searchInput.addEventListener('input', function () {
+            clearTimeout(timer);
+            var q = this.value.trim();
+            if (q.length < 2) {
+                searchResults.classList.remove('open');
+                searchResults.innerHTML = '';
+                return;
+            }
+            timer = setTimeout(function () {
+                fetch('/vetclinic/search.php?q=' + encodeURIComponent(q))
+                    .then(function (r) { return r.json(); })
+                    .then(function (data) { renderSearch(data.results || []); })
+                    .catch(function () {});
+            }, 280);
+        });
+    }
+
+    function renderSearch(results) {
+        if (!searchResults) return;
+        searchResults.innerHTML = '';
+        if (results.length === 0) {
+            searchResults.innerHTML = '<div class="hdr-search-empty">Ничего не найдено</div>';
+            searchResults.classList.add('open');
+            return;
+        }
+        results.forEach(function (item) {
+            var svg = item.type === 'doctor'
+                ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>'
+                : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/></svg>';
+            var a = document.createElement('a');
+            a.href      = item.url;
+            a.className = 'hdr-search-item';
+            a.innerHTML = '<div class="hdr-search-item-icon">' + svg + '</div>'
+                        + '<div>'
+                        + '<div class="hdr-search-item-title">' + esc(item.title) + '</div>'
+                        + '<div class="hdr-search-item-sub">'   + esc(item.subtitle) + '</div>'
+                        + '</div>';
+            searchResults.appendChild(a);
+        });
+        searchResults.classList.add('open');
+    }
+
+    // ── Уведомления ───────────────────────────────────────
+    var notifBell   = document.getElementById('notifBell');
+    var notifToggle = document.getElementById('notifToggle');
+    var notifDrop   = document.getElementById('notifDropdown');
+    var notifDot    = document.getElementById('notifDot');
+    var notifBody   = document.getElementById('notifBody');
+
+    if (notifToggle && notifDrop) {
+        fetch('/vetclinic/notifications.php')
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+                if (d.count > 0 && notifDot) notifDot.style.display = 'block';
+                renderNotif(d.items || [], notifBody);
+            }).catch(function () {});
+
+        notifToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            notifDrop.classList.toggle('open');
+            if (notifDot) notifDot.style.display = 'none';
+        });
+
+        document.addEventListener('click', function (e) {
+            if (notifBell && !notifBell.contains(e.target)) {
+                notifDrop.classList.remove('open');
+            }
+        });
+    }
+
+    function renderNotif(items, container) {
+        if (!container) return;
+        if (!items.length) {
+            container.innerHTML = '<div class="hdr-notif-empty">Нет новых уведомлений</div>';
+            return;
+        }
+        container.innerHTML = '';
+        var colors = { new:'#8a6500', confirmed:'#1b5e20', cancelled:'#8b1a1a', completed:'#0d47a1' };
+        var labels = { new:'Новая запись', confirmed:'Подтверждена', cancelled:'Отменена', completed:'Завершён' };
+        items.forEach(function (item) {
+            var el = document.createElement('div');
+            el.className = 'hdr-notif-item';
+            el.innerHTML = '<div class="hdr-notif-title" style="color:' + (colors[item.status]||'#000') + '">'
+                         + esc(labels[item.status]||item.title) + '</div>'
+                         + '<div class="hdr-notif-text">' + esc(item.text) + '</div>';
+            container.appendChild(el);
+        });
+    }
+
+    // ── Scroll Reveal ─────────────────────────────────────
+    var selectors = '.service-card,.doctor-card,.doctor-page-card,.feature-card,.review-card,.stat-card,.gallery-item,.reveal';
+    document.querySelectorAll(selectors).forEach(function (el) {
+        if (!el.classList.contains('reveal')) el.classList.add('reveal');
+    });
+    var revObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function (el) { revObs.observe(el); });
+
+    // ── Счётчики hero ─────────────────────────────────────
+    document.querySelectorAll('[data-count]').forEach(function (el) {
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var suffix = el.getAttribute('data-suffix') || '';
+        var ob = new IntersectionObserver(function (entries) {
+            if (!entries[0].isIntersecting) return;
+            var steps = 60, inc = target / steps, cur = 0;
+            var t = setInterval(function () {
+                cur += inc;
+                if (cur >= target) { cur = target; clearInterval(t); }
+                el.textContent = Math.round(cur) + suffix;
+            }, 1800 / steps);
+            ob.disconnect();
+        });
+        ob.observe(el);
+    });
+
+    // ── Параллакс Hero ────────────────────────────────────
+    var heroBg = document.getElementById('heroBg');
+    if (heroBg) {
+        setTimeout(function () { heroBg.style.transform = 'scale(1)'; }, 100);
+        window.addEventListener('scroll', function () {
+            heroBg.style.transform = 'scale(1.08) translateY(' + (window.pageYOffset * 0.3) + 'px)';
+        }, { passive: true });
+    }
+
+    // ── Тень шапки при скролле ────────────────────────────
+    var hdr = document.getElementById('siteHeader');
+    if (hdr) {
+        window.addEventListener('scroll', function () {
+            hdr.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+    }
+
+    // ── Flash-сообщения ───────────────────────────────────
+    document.querySelectorAll('.alert').forEach(function (el) {
+        setTimeout(function () {
+            el.style.transition = 'opacity .5s';
+            el.style.opacity = '0';
+            setTimeout(function () { el.remove(); }, 520);
+        }, 5000);
+    });
+
+    function esc(str) {
+        var d = document.createElement('div');
+        d.textContent = str || '';
+        return d.innerHTML;
+    }
+});
+
+
+/* lazy-loaded-marker — добавляет класс .loaded когда изображение появилось */
+(function() {
+    'use strict';
+    document.querySelectorAll('img[loading="lazy"]').forEach(function(img) {
+        if (img.complete && img.naturalHeight !== 0) {
+            img.classList.add('loaded');
+        } else {
+            img.addEventListener('load', function() { img.classList.add('loaded'); });
+            img.addEventListener('error', function() { img.classList.add('loaded'); });
+        }
+    });
+})();

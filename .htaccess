@@ -1,0 +1,11 @@
+# vetclinic/.htaccess
+ErrorDocument 404 /vetclinic/404.php
+
+# Безопасность: запрет доступа к конфигурационным файлам
+<Files "db.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Запрет листинга директорий
+Options -Indexes

@@ -1,0 +1,376 @@
+/* =====================================================
+   theme-dark-fix.css — Финальный «суппорт» тёмной темы.
+   Подключается ПОСЛЕДНИМ из всех theme*-файлов.
+   Использует только абсолютные цвета (без var(...)) и
+   максимальную специфичность html[data-theme="dark"] body
+   чтобы перебить все ранее написанные правила, в т.ч.
+   старые кэши браузера.
+   ===================================================== */
+
+/* ════════════════════════════════════════════════════
+   Глобальные тексты внутри <main> в тёмной теме —
+   страховка для всех страниц
+   ════════════════════════════════════════════════════ */
+html[data-theme="dark"] body main h1,
+html[data-theme="dark"] body main h2,
+html[data-theme="dark"] body main h3,
+html[data-theme="dark"] body main h4 {
+  color: #e8f0ec;
+  -webkit-text-fill-color: #e8f0ec;
+}
+
+html[data-theme="dark"] body main p {
+  color: rgba(232, 240, 236, .82);
+  -webkit-text-fill-color: rgba(232, 240, 236, .82);
+}
+
+/* Курсив-акцент во всех заголовках — золотой */
+html[data-theme="dark"] body main h1 em,
+html[data-theme="dark"] body main h2 em,
+html[data-theme="dark"] body main h3 em {
+  color: #e2c97e !important;
+  -webkit-text-fill-color: #e2c97e !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  font-style: italic;
+}
+
+/* ════════════════════════════════════════════════════
+   SECTION-TITLE — основная проблема скриншотов:
+   "Забота, которой можно доверять", "Наши услуги" и т.п.
+   ════════════════════════════════════════════════════ */
+html[data-theme="dark"] body .section-title h2,
+html[data-theme="dark"] body main .section-title h2,
+html[data-theme="dark"] .section-title h2 {
+  color: #e8f0ec !important;
+  -webkit-text-fill-color: #e8f0ec !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  text-shadow: none;
+  opacity: 1;
+}
+
+html[data-theme="dark"] body .section-title h2 em,
+html[data-theme="dark"] body main .section-title h2 em,
+html[data-theme="dark"] .section-title h2 em {
+  color: #e2c97e !important;
+  -webkit-text-fill-color: #e2c97e !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+}
+
+html[data-theme="dark"] body .section-title .section-label,
+html[data-theme="dark"] .section-title .section-label {
+  color: #e2c97e !important;
+  -webkit-text-fill-color: #e2c97e !important;
+  background: rgba(201, 168, 76, .14) !important;
+  border-color: rgba(201, 168, 76, .35) !important;
+}
+
+html[data-theme="dark"] body .section-title p,
+html[data-theme="dark"] .section-title p {
+  color: rgba(232, 240, 236, .78) !important;
+  -webkit-text-fill-color: rgba(232, 240, 236, .78) !important;
+}
+
+/* Линия-разделитель под section-title — делаем заметной */
+html[data-theme="dark"] .section-title::after {
+  background: linear-gradient(90deg, #2ecc71, #e2c97e) !important;
+  opacity: .9;
+}
+
+/* ════════════════════════════════════════════════════
+   PAGE-HERO (внутренние страницы — services, doctors, prices...)
+   ════════════════════════════════════════════════════ */
+html[data-theme="dark"] body .page-hero {
+  background: linear-gradient(135deg, #0a1612 0%, #1a3024 100%) !important;
+}
+html[data-theme="dark"] body .page-hero h1,
+html[data-theme="dark"] body .page-hero .container h1 {
+  color: #faf8f4 !important;
+  -webkit-text-fill-color: #faf8f4 !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  text-shadow: 0 2px 12px rgba(0,0,0,.5);
+}
+html[data-theme="dark"] body .page-hero h1 em {
+  color: #e2c97e !important;
+  -webkit-text-fill-color: #e2c97e !important;
+}
+html[data-theme="dark"] body .page-hero p,
+html[data-theme="dark"] body .page-hero .container p {
+  color: rgba(250,248,244,.92) !important;
+  -webkit-text-fill-color: rgba(250,248,244,.92) !important;
+}
+
+/* ════════════════════════════════════════════════════
+   КАРТОЧКИ — features / services / doctors / reviews
+   (страховка поверх theme-dark-final.css)
+   ════════════════════════════════════════════════════ */
+html[data-theme="dark"] body .feature-card,
+html[data-theme="dark"] body .service-card,
+html[data-theme="dark"] body .doctor-card,
+html[data-theme="dark"] body .review-card,
+html[data-theme="dark"] body .stat-card {
+  background: #1e2826 !important;
+  border-color: #2d3d37 !important;
+  color: #e8f0ec !important;
+}
+
+html[data-theme="dark"] body .feature-card h3,
+html[data-theme="dark"] body .service-card h3,
+html[data-theme="dark"] body .doctor-card h3,
+html[data-theme="dark"] body .review-card h3,
+html[data-theme="dark"] body .review-author {
+  color: #faf8f4 !important;
+  -webkit-text-fill-color: #faf8f4 !important;
+}
+
+html[data-theme="dark"] body .feature-card p,
+html[data-theme="dark"] body .service-card p,
+html[data-theme="dark"] body .doctor-card p,
+html[data-theme="dark"] body .review-text {
+  color: rgba(232,240,236,.78) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.78) !important;
+}
+
+html[data-theme="dark"] body .feature-icon,
+html[data-theme="dark"] body .service-icon {
+  color: #e2c97e !important;
+}
+html[data-theme="dark"] body .service-price {
+  color: #e2c97e !important;
+  -webkit-text-fill-color: #e2c97e !important;
+}
+html[data-theme="dark"] body .service-price-label,
+html[data-theme="dark"] body .doctor-exp,
+html[data-theme="dark"] body .review-doctor {
+  color: rgba(232,240,236,.62) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.62) !important;
+}
+html[data-theme="dark"] body .doctor-specialty {
+  color: #e2c97e !important;
+  -webkit-text-fill-color: #e2c97e !important;
+}
+
+/* ════════════════════════════════════════════════════
+   ФОРМЫ — auth-box, form-box, inputs, labels
+   ════════════════════════════════════════════════════ */
+html[data-theme="dark"] body .auth-box,
+html[data-theme="dark"] body .form-box,
+html[data-theme="dark"] body .form-card {
+  background: #1e2826 !important;
+  border-color: #2d3d37 !important;
+}
+html[data-theme="dark"] body .auth-header h1,
+html[data-theme="dark"] body .auth-header h2,
+html[data-theme="dark"] body .form-box h1,
+html[data-theme="dark"] body .form-box h2,
+html[data-theme="dark"] body .form-card h1,
+html[data-theme="dark"] body .form-card h2 {
+  color: #e8f0ec !important;
+  -webkit-text-fill-color: #e8f0ec !important;
+}
+html[data-theme="dark"] body .auth-header p,
+html[data-theme="dark"] body .auth-footer,
+html[data-theme="dark"] body .form-box p {
+  color: rgba(232,240,236,.7) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.7) !important;
+}
+
+html[data-theme="dark"] body .form-group label,
+html[data-theme="dark"] body label {
+  color: rgba(232,240,236,.78) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.78) !important;
+}
+
+html[data-theme="dark"] body input[type="text"],
+html[data-theme="dark"] body input[type="email"],
+html[data-theme="dark"] body input[type="tel"],
+html[data-theme="dark"] body input[type="password"],
+html[data-theme="dark"] body input[type="number"],
+html[data-theme="dark"] body input[type="date"],
+html[data-theme="dark"] body input[type="time"],
+html[data-theme="dark"] body input[type="search"],
+html[data-theme="dark"] body select,
+html[data-theme="dark"] body textarea {
+  background: #2a3530 !important;
+  color: #e8f0ec !important;
+  border-color: #3a4a43 !important;
+}
+html[data-theme="dark"] body input:focus,
+html[data-theme="dark"] body select:focus,
+html[data-theme="dark"] body textarea:focus {
+  border-color: #e2c97e !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(226,201,126,.18) !important;
+}
+html[data-theme="dark"] body input::placeholder,
+html[data-theme="dark"] body textarea::placeholder {
+  color: rgba(232,240,236,.4) !important;
+}
+
+/* ════════════════════════════════════════════════════
+   ТАБЛИЦЫ
+   ════════════════════════════════════════════════════ */
+html[data-theme="dark"] body table {
+  background: #1e2826 !important;
+  color: #e8f0ec !important;
+  border-color: #2d3d37 !important;
+}
+html[data-theme="dark"] body table th {
+  background: #243430 !important;
+  color: #e2c97e !important;
+  border-color: #2d3d37 !important;
+}
+html[data-theme="dark"] body table td {
+  border-color: #2d3d37 !important;
+  color: #e8f0ec !important;
+}
+html[data-theme="dark"] body table tr:hover td {
+  background: #243430 !important;
+}
+
+/* ════════════════════════════════════════════════════
+   КОНТАКТНЫЕ КАРТОЧКИ, ПРОФИЛЬ, ПРОЧИЕ inline-стили
+   ════════════════════════════════════════════════════ */
+html[data-theme="dark"] body .contact-item-text strong {
+  color: rgba(232,240,236,.55) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.55) !important;
+}
+html[data-theme="dark"] body .contact-item-text a,
+html[data-theme="dark"] body .contact-item-text span {
+  color: #e8f0ec !important;
+  -webkit-text-fill-color: #e8f0ec !important;
+}
+
+/* Цена-блок */
+html[data-theme="dark"] body .price-duration {
+  color: rgba(232,240,236,.6) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.6) !important;
+}
+
+/* Назначения / профиль */
+html[data-theme="dark"] body .appt-info p,
+html[data-theme="dark"] body .stat-label,
+html[data-theme="dark"] body .profile-info p,
+html[data-theme="dark"] body .filter-tab {
+  color: rgba(232,240,236,.72) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.72) !important;
+}
+html[data-theme="dark"] body .filter-tab.active {
+  background: #0d4f3c !important;
+  color: #faf8f4 !important;
+}
+
+/* Поиск */
+html[data-theme="dark"] body .search-result-title {
+  color: #e8f0ec !important;
+  -webkit-text-fill-color: #e8f0ec !important;
+}
+html[data-theme="dark"] body .search-result-sub,
+html[data-theme="dark"] body .search-result-empty {
+  color: rgba(232,240,236,.65) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.65) !important;
+}
+
+/* Уведомления */
+html[data-theme="dark"] body .notif-item-title {
+  color: #e8f0ec !important;
+  -webkit-text-fill-color: #e8f0ec !important;
+}
+html[data-theme="dark"] body .notif-item-text,
+html[data-theme="dark"] body .notif-item-time,
+html[data-theme="dark"] body .notif-empty {
+  color: rgba(232,240,236,.6) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.6) !important;
+}
+
+/* ════════════════════════════════════════════════════
+   ПЕРЕБИВКА ИНЛАЙН-СТИЛЕЙ типа style="color:var(--ink-mid)"
+   которые встречаются на about.php/doctors.php/contacts.php
+   (style attr побеждает обычные правила, поэтому используем
+   тщательное правило с !important на типичных контейнерах)
+   ════════════════════════════════════════════════════ */
+html[data-theme="dark"] body main [style*="color:var(--ink)"],
+html[data-theme="dark"] body main [style*="color: var(--ink)"] {
+  color: #e8f0ec !important;
+  -webkit-text-fill-color: #e8f0ec !important;
+}
+html[data-theme="dark"] body main [style*="color:var(--ink-mid)"],
+html[data-theme="dark"] body main [style*="color: var(--ink-mid)"] {
+  color: rgba(232,240,236,.85) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.85) !important;
+}
+html[data-theme="dark"] body main [style*="color:var(--ink-soft)"],
+html[data-theme="dark"] body main [style*="color: var(--ink-soft)"] {
+  color: rgba(232,240,236,.78) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.78) !important;
+}
+html[data-theme="dark"] body main [style*="color:var(--ink-muted)"],
+html[data-theme="dark"] body main [style*="color: var(--ink-muted)"] {
+  color: rgba(232,240,236,.6) !important;
+  -webkit-text-fill-color: rgba(232,240,236,.6) !important;
+}
+
+/* ════════════════════════════════════════════════════
+   КНОПКИ — контурные становятся невидимыми на тёмном
+   ════════════════════════════════════════════════════ */
+html[data-theme="dark"] body .btn-outline {
+  border-color: rgba(226,201,126,.55) !important;
+  color: #e2c97e !important;
+}
+html[data-theme="dark"] body .btn-outline:hover {
+  background: #e2c97e !important;
+  color: #0a1612 !important;
+  border-color: #e2c97e !important;
+}
+html[data-theme="dark"] body .btn-outline-white {
+  border-color: rgba(250,248,244,.55) !important;
+  color: #faf8f4 !important;
+}
+
+/* Ссылки в основном тексте */
+html[data-theme="dark"] body main a:not(.btn):not(.btn-gold):not(.btn-outline):not(.btn-outline-white):not(.wow-btn-magnet):not(.wow-btn-ghost):not(.feature-card):not(.service-card):not(.doctor-card):not(.review-card):not(.chat-thread-card):not(.logo) {
+  color: #5fc7a0;
+}
+html[data-theme="dark"] body main a:not(.btn):not(.btn-gold):not(.btn-outline):not(.btn-outline-white):hover {
+  color: #e2c97e;
+}
+
+/* ════════════════════════════════════════════════════
+   ВАУ-главная (мой Этап 1) в тёмной теме
+   ════════════════════════════════════════════════════ */
+/* Marquee на тёмной теме чуть светлее, чтобы текст читался */
+html[data-theme="dark"] body .wow-marquee {
+  background: #050d0a !important;
+}
+html[data-theme="dark"] body .wow-marquee::before {
+  background: linear-gradient(90deg, #050d0a 0%, transparent 100%) !important;
+}
+html[data-theme="dark"] body .wow-marquee::after {
+  background: linear-gradient(-90deg, #050d0a 0%, transparent 100%) !important;
+}
+
+/* Бейджи в hero — фон тёмный */
+html[data-theme="dark"] body .wow-hero__badge {
+  background: rgba(20,27,24,.96) !important;
+  color: #e8f0ec !important;
+}
+html[data-theme="dark"] body .wow-hero__badge strong {
+  color: #faf8f4 !important;
+}
+html[data-theme="dark"] body .wow-hero__badge span {
+  color: rgba(232,240,236,.7) !important;
+}
+html[data-theme="dark"] body .wow-hero__badge-icn {
+  background: rgba(255,255,255,.08) !important;
+}

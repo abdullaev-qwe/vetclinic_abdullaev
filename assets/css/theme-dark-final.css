@@ -1,0 +1,315 @@
+/* =====================================================
+   theme-dark-final.css — точечный фикс под VetCare
+   Подключить ПОСЛЕ всех theme*.css
+   Использует html[data-theme="dark"] для максимальной специфичности
+   ===================================================== */
+
+/* ════════════════════════════════════════════════════
+   HERO-секция: <section class="hero">
+   ════════════════════════════════════════════════════ */
+
+html[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #0a1612 0%, #122520 100%) !important;
+}
+
+/* Затемнение hero-bg чтобы текст читался поверх изображения */
+html[data-theme="dark"] .hero-bg::after,
+html[data-theme="dark"] .hero-bg::before {
+    background: linear-gradient(105deg,
+        rgba(10, 22, 18, 0.92) 0%,
+        rgba(10, 22, 18, 0.78) 50%,
+        rgba(10, 22, 18, 0.45) 100%) !important;
+}
+
+/* Метка "Ветеринарная клиника · Москва" */
+html[data-theme="dark"] .hero .hero-label {
+    background: rgba(201, 168, 76, 0.15) !important;
+    color: #e2c97e !important;
+    -webkit-text-fill-color: #e2c97e !important;
+    border: 1px solid rgba(201, 168, 76, 0.5) !important;
+}
+
+/* Главный заголовок hero — белый/кремовый */
+html[data-theme="dark"] .hero h1,
+html[data-theme="dark"] .hero h1 span,
+html[data-theme="dark"] .hero-content h1 {
+    color: #faf8f4 !important;
+    -webkit-text-fill-color: #faf8f4 !important;
+    background: none !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+    background-image: none !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Курсив "наш" в заголовке — золотой */
+html[data-theme="dark"] .hero h1 em,
+html[data-theme="dark"] .hero-content h1 em {
+    color: #e2c97e !important;
+    -webkit-text-fill-color: #e2c97e !important;
+    background: none !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+    font-style: italic;
+}
+
+/* Подзаголовок hero */
+html[data-theme="dark"] .hero p,
+html[data-theme="dark"] .hero-content p {
+    color: rgba(250, 248, 244, 0.92) !important;
+    -webkit-text-fill-color: rgba(250, 248, 244, 0.92) !important;
+}
+
+/* Hero статистика (15+, 5, 3000+, 12) */
+html[data-theme="dark"] .hero-stat strong,
+html[data-theme="dark"] .hero-stats strong {
+    color: #e2c97e !important;
+    -webkit-text-fill-color: #e2c97e !important;
+}
+
+html[data-theme="dark"] .hero-stat span,
+html[data-theme="dark"] .hero-stats span {
+    color: rgba(250, 248, 244, 0.85) !important;
+    -webkit-text-fill-color: rgba(250, 248, 244, 0.85) !important;
+}
+
+/* Hero badges (онлайн-запись, рейтинг) */
+html[data-theme="dark"] .hero-badge {
+    background: rgba(20, 27, 24, 0.92) !important;
+    color: #e8f0ec !important;
+    border: 1px solid rgba(201, 168, 76, 0.4) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+html[data-theme="dark"] .hero-badge strong {
+    color: #faf8f4 !important;
+    -webkit-text-fill-color: #faf8f4 !important;
+}
+
+html[data-theme="dark"] .hero-badge span {
+    color: rgba(232, 240, 236, 0.75) !important;
+    -webkit-text-fill-color: rgba(232, 240, 236, 0.75) !important;
+}
+
+/* Кнопка "Наши услуги" в hero (.btn-outline-white) */
+html[data-theme="dark"] .btn-outline-white {
+    border: 2px solid #faf8f4 !important;
+    color: #faf8f4 !important;
+}
+
+html[data-theme="dark"] .btn-outline-white:hover {
+    background: #faf8f4 !important;
+    color: #0a1612 !important;
+}
+
+/* ════════════════════════════════════════════════════
+   CTA-секция: <section class="cta-section">
+   ════════════════════════════════════════════════════ */
+
+html[data-theme="dark"] .cta-section {
+    background: linear-gradient(135deg, #0a1612 0%, #122520 100%) !important;
+}
+
+html[data-theme="dark"] .cta-section h2 {
+    color: #faf8f4 !important;
+    -webkit-text-fill-color: #faf8f4 !important;
+    background: none !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+}
+
+html[data-theme="dark"] .cta-section h2 em {
+    color: #e2c97e !important;
+    -webkit-text-fill-color: #e2c97e !important;
+}
+
+html[data-theme="dark"] .cta-section p {
+    color: rgba(250, 248, 244, 0.88) !important;
+    -webkit-text-fill-color: rgba(250, 248, 244, 0.88) !important;
+}
+
+/* ════════════════════════════════════════════════════
+   ПОДВАЛ: <footer class="site-footer">
+   ════════════════════════════════════════════════════ */
+
+html[data-theme="dark"] .site-footer {
+    background: #0a1612 !important;
+    color: #e8f0ec !important;
+    border-top: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+/* Логотип в подвале (.logo-text) */
+html[data-theme="dark"] .site-footer .logo-text,
+html[data-theme="dark"] .site-footer .logo {
+    color: #faf8f4 !important;
+    -webkit-text-fill-color: #faf8f4 !important;
+}
+
+html[data-theme="dark"] .site-footer .logo-text strong {
+    color: #faf8f4 !important;
+    -webkit-text-fill-color: #faf8f4 !important;
+}
+
+html[data-theme="dark"] .site-footer .logo-text em {
+    color: #e2c97e !important;
+    -webkit-text-fill-color: #e2c97e !important;
+}
+
+/* Заголовки колонок (Навигация, Пациентам, Контакты) */
+html[data-theme="dark"] .site-footer .footer-col h4,
+html[data-theme="dark"] .footer-col h4 {
+    color: #e2c97e !important;
+    -webkit-text-fill-color: #e2c97e !important;
+}
+
+/* Описание клиники под логотипом */
+html[data-theme="dark"] .site-footer .footer-col p,
+html[data-theme="dark"] .footer-col p {
+    color: rgba(232, 240, 236, 0.78) !important;
+    -webkit-text-fill-color: rgba(232, 240, 236, 0.78) !important;
+}
+
+/* Ссылки навигации в подвале */
+html[data-theme="dark"] .site-footer .footer-col a,
+html[data-theme="dark"] .footer-col a,
+html[data-theme="dark"] .site-footer .footer-col li,
+html[data-theme="dark"] .footer-col li {
+    color: rgba(232, 240, 236, 0.78) !important;
+    -webkit-text-fill-color: rgba(232, 240, 236, 0.78) !important;
+}
+
+html[data-theme="dark"] .site-footer .footer-col a:hover,
+html[data-theme="dark"] .footer-col a:hover {
+    color: #e2c97e !important;
+    -webkit-text-fill-color: #e2c97e !important;
+}
+
+/* Контактная инфо в подвале (телефон, email, адрес) */
+html[data-theme="dark"] .site-footer .contacts-list,
+html[data-theme="dark"] .contacts-list,
+html[data-theme="dark"] .site-footer .contacts-list li,
+html[data-theme="dark"] .site-footer .contacts-list span,
+html[data-theme="dark"] .site-footer .contacts-list a {
+    color: rgba(232, 240, 236, 0.85) !important;
+    -webkit-text-fill-color: rgba(232, 240, 236, 0.85) !important;
+}
+
+/* Footer-bottom: копирайт */
+html[data-theme="dark"] .site-footer .footer-bottom,
+html[data-theme="dark"] .footer-bottom {
+    color: rgba(232, 240, 236, 0.55) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="dark"] .site-footer .footer-bottom p {
+    color: rgba(232, 240, 236, 0.6) !important;
+    -webkit-text-fill-color: rgba(232, 240, 236, 0.6) !important;
+}
+
+/* ════════════════════════════════════════════════════
+   SECTION-TITLE на светлых секциях (.section-label, h2)
+   ════════════════════════════════════════════════════ */
+
+html[data-theme="dark"] .section-title .section-label {
+    color: #e2c97e !important;
+    -webkit-text-fill-color: #e2c97e !important;
+}
+
+html[data-theme="dark"] .section-title h2 {
+    color: #e8f0ec !important;
+    -webkit-text-fill-color: #e8f0ec !important;
+    background: none !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+}
+
+html[data-theme="dark"] .section-title h2 em {
+    color: #e2c97e !important;
+    -webkit-text-fill-color: #e2c97e !important;
+}
+
+html[data-theme="dark"] .section-title p {
+    color: rgba(232, 240, 236, 0.78) !important;
+    -webkit-text-fill-color: rgba(232, 240, 236, 0.78) !important;
+}
+
+/* ════════════════════════════════════════════════════
+   КАРТОЧКИ (services, doctors, features, reviews)
+   ════════════════════════════════════════════════════ */
+
+html[data-theme="dark"] .feature-card,
+html[data-theme="dark"] .service-card,
+html[data-theme="dark"] .doctor-card,
+html[data-theme="dark"] .review-card {
+    background: #1e2826 !important;
+    border-color: #2d3d37 !important;
+    color: #e8f0ec !important;
+}
+
+html[data-theme="dark"] .feature-card h3,
+html[data-theme="dark"] .service-card h3,
+html[data-theme="dark"] .doctor-card h3,
+html[data-theme="dark"] .review-card h3 {
+    color: #e8f0ec !important;
+    -webkit-text-fill-color: #e8f0ec !important;
+}
+
+html[data-theme="dark"] .feature-card p,
+html[data-theme="dark"] .service-card p,
+html[data-theme="dark"] .doctor-card p,
+html[data-theme="dark"] .review-text {
+    color: rgba(232, 240, 236, 0.75) !important;
+    -webkit-text-fill-color: rgba(232, 240, 236, 0.75) !important;
+}
+
+html[data-theme="dark"] .feature-icon {
+    color: #e2c97e !important;
+}
+
+html[data-theme="dark"] .service-icon {
+    color: #e2c97e !important;
+}
+
+html[data-theme="dark"] .service-price {
+    color: #e2c97e !important;
+    -webkit-text-fill-color: #e2c97e !important;
+}
+
+html[data-theme="dark"] .service-price-label {
+    color: rgba(232, 240, 236, 0.6) !important;
+}
+
+/* Doctor card */
+html[data-theme="dark"] .doctor-card-body {
+    background: #1e2826 !important;
+}
+
+html[data-theme="dark"] .doctor-specialty {
+    color: #e2c97e !important;
+    -webkit-text-fill-color: #e2c97e !important;
+}
+
+html[data-theme="dark"] .doctor-exp {
+    color: rgba(232, 240, 236, 0.7) !important;
+}
+
+/* Review card */
+html[data-theme="dark"] .review-author {
+    color: #e8f0ec !important;
+    -webkit-text-fill-color: #e8f0ec !important;
+}
+
+html[data-theme="dark"] .review-doctor {
+    color: rgba(232, 240, 236, 0.7) !important;
+}
+
+/* ════════════════════════════════════════════════════
+   FIX: section с inline style="background:var(--white)"
+   В тёмной теме var(--white) уже = тёмный, но нужно убедиться
+   ════════════════════════════════════════════════════ */
+
+html[data-theme="dark"] section[style*="--white"],
+html[data-theme="dark"] .section[style*="background"] {
+    background: #1e2826 !important;
+}

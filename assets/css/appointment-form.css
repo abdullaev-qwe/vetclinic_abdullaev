@@ -1,0 +1,402 @@
+/* =====================================================
+   appointment-form.css — стили анкеты предварительного осмотра
+   ===================================================== */
+
+.appt-form-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* Информационная карточка о записи */
+.appt-info-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--emerald-pale, #e8f2ee);
+  border: 1px solid var(--emerald, #0d4f3c);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  color: var(--ink, #0f1f1a);
+  line-height: 1.6;
+}
+.appt-info-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+/* Форма */
+.appt-form {
+  background: var(--white, #fff);
+  border: 1px solid var(--border, #d8e6e0);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+
+.appt-form .form-group {
+  margin-bottom: 22px;
+}
+
+.appt-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink, #0f1f1a);
+}
+
+.appt-form label small {
+  display: block;
+  font-weight: normal;
+  color: var(--ink-soft, #5a7068);
+  font-size: 0.82rem;
+  margin-top: 2px;
+}
+
+.appt-form textarea,
+.appt-form input[type="text"],
+.appt-form input[type="number"],
+.appt-form select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border, #d8e6e0);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: white;
+  color: var(--ink, #0f1f1a);
+  transition: border-color 0.15s;
+}
+
+.appt-form textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.appt-form textarea:focus,
+.appt-form input:focus,
+.appt-form select:focus {
+  outline: none;
+  border-color: var(--emerald, #0d4f3c);
+  box-shadow: 0 0 0 3px rgba(13,79,60,0.12);
+}
+
+.char-counter {
+  text-align: right;
+  font-size: 0.78rem;
+  color: var(--ink-muted, #8fa89f);
+  margin-top: 4px;
+}
+
+/* Чекбоксы симптомов в виде "чипов" */
+.symptoms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+
+.symptom-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 1px solid var(--border, #d8e6e0);
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--cream, #faf8f4);
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+.symptom-chip:hover {
+  border-color: var(--emerald, #0d4f3c);
+  background: var(--emerald-ghost, #f0f7f4);
+}
+
+.symptom-chip input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--emerald, #0d4f3c);
+  margin: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.symptom-chip:has(input:checked) {
+  background: var(--emerald, #0d4f3c);
+  color: white;
+  border-color: var(--emerald, #0d4f3c);
+}
+
+/* Возраст */
+.age-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Срочность — карточки */
+.urgency-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.urgency-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 2px solid var(--border, #d8e6e0);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: white;
+}
+
+.urgency-card:hover {
+  border-color: var(--emerald, #0d4f3c);
+}
+
+.urgency-card input[type="radio"] {
+  display: none;
+}
+
+.urgency-card:has(input:checked) {
+  border-color: var(--emerald, #0d4f3c);
+  background: var(--emerald-ghost, #f0f7f4);
+  box-shadow: 0 0 0 3px rgba(13,79,60,0.12);
+}
+
+.urgency-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.urgency-info {
+  flex: 1;
+}
+
+.urgency-info strong {
+  display: block;
+  color: var(--ink, #0f1f1a);
+  font-size: 0.92rem;
+}
+
+.urgency-info small {
+  display: block;
+  color: var(--ink-soft, #5a7068);
+  font-size: 0.78rem;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+/* Чекбокс с описанием */
+.checkbox-row {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  background: var(--cream, #faf8f4);
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #d8e6e0);
+  margin-bottom: 0 !important;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  flex-shrink: 0;
+  accent-color: var(--emerald, #0d4f3c);
+}
+
+.checkbox-row span {
+  flex: 1;
+}
+
+.checkbox-row span small {
+  display: block;
+  font-weight: normal;
+  margin-top: 4px;
+}
+
+/* Текущий файл */
+.attachment-current {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--emerald-ghost, #f0f7f4);
+  border: 1px solid var(--border, #d8e6e0);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.appt-form input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px dashed var(--border, #d8e6e0);
+  border-radius: 8px;
+  background: var(--cream, #faf8f4);
+  cursor: pointer;
+}
+
+.attachment-preview {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--ink-soft, #5a7068);
+}
+
+.attachment-preview img {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 8px;
+  margin-top: 8px;
+  border: 1px solid var(--border, #d8e6e0);
+}
+
+/* Кнопки */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1px solid var(--border, #d8e6e0);
+  margin-top: 24px;
+}
+
+/* Бейдж срочности — везде где используется */
+.urgency-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* === Просмотр анкеты в админке (раскрывающийся блок) === */
+.form-details {
+  background: var(--cream, #faf8f4);
+  border: 1px solid var(--border, #d8e6e0);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 12px 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.form-details h4 {
+  margin: 0 0 10px;
+  color: var(--emerald, #0d4f3c);
+  font-size: 0.95rem;
+}
+
+.form-details dl {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 6px 12px;
+  margin: 0;
+}
+
+.form-details dt {
+  color: var(--ink-soft, #5a7068);
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.form-details dd {
+  margin: 0;
+  color: var(--ink, #0f1f1a);
+}
+
+.form-details .symptoms-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.form-details .symptom-tag {
+  background: var(--emerald-pale, #e8f2ee);
+  color: var(--emerald, #0d4f3c);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+}
+
+/* Кнопка раскрытия в таблице */
+.toggle-form-btn {
+  background: none;
+  border: 1px solid var(--border, #d8e6e0);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--emerald, #0d4f3c);
+  transition: all 0.15s;
+}
+
+.toggle-form-btn:hover {
+  background: var(--emerald-ghost, #f0f7f4);
+  border-color: var(--emerald, #0d4f3c);
+}
+
+/* Тёмная тема */
+[data-theme="dark"] .appt-form,
+[data-theme="dark"] .appt-info-card {
+  background: var(--white, #1e2826) !important;
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .appt-form textarea,
+[data-theme="dark"] .appt-form input[type="text"],
+[data-theme="dark"] .appt-form input[type="number"],
+[data-theme="dark"] .appt-form select {
+  background: #2a3530 !important;
+  color: var(--ink) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .symptom-chip {
+  background: #2a3530;
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .urgency-card {
+  background: #2a3530;
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .urgency-info strong {
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .checkbox-row {
+  background: #2a3530 !important;
+  color: var(--ink) !important;
+}
+
+[data-theme="dark"] .form-details {
+  background: #2a3530 !important;
+  color: var(--ink) !important;
+}
+
+@media (max-width: 640px) {
+  .urgency-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-details dl {
+    grid-template-columns: 1fr;
+  }
+  .form-details dt {
+    margin-top: 6px;
+  }
+}
